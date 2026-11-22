@@ -1,0 +1,211 @@
+{
+  "ruleset_version": "1.0",
+  "rules": [
+    {
+      "rule_id": "R01",
+      "name": "Termination Notice",
+      "policy": "General termination-for-convenience rights must require at least 30 days of prior written notice.",
+
+      "required_facts": [
+        "notice_days",
+        "termination_type",
+        "party"
+      ],
+
+      "applicability_criteria": "Termination-for-convenience rights under the main agreement are in scope. Specialized termination rights triggered by breach, security, regulatory, or schedule-specific events are not automatically in scope and must be identified separately.",
+
+      "evaluation_mode": "DETERMINISTIC",
+      "quantifier": "ALL",
+
+      "evaluation_logic": {
+        "type": "numeric_threshold",
+        "field": "notice_days",
+        "operator": ">=",
+        "threshold": 30,
+        "unit": "days"
+      },
+
+      "evidence_requirement": "Every extracted termination fact must include an exact quote from the contract.",
+
+      "not_found_condition": "No applicable termination-for-convenience notice period can be extracted.",
+
+      "review_triggers": [
+        "A potentially violating termination clause is excluded as non-applicable.",
+        "The termination type or policy applicability is materially ambiguous.",
+        "The notice duration cannot be normalized."
+      ]
+    },
+
+    {
+      "rule_id": "R02",
+      "name": "Payment Terms",
+      "policy": "Payment for valid supplier invoices must be due no later than 60 calendar days after receipt of the invoice.",
+
+      "required_facts": [
+        "payment_days",
+        "trigger_event"
+      ],
+
+      "applicability_criteria": "Ordinary contractual provisions defining the deadline for payment of valid supplier invoices are in scope.",
+
+      "evaluation_mode": "DETERMINISTIC",
+      "quantifier": "ALL",
+
+      "evaluation_logic": {
+        "type": "numeric_threshold",
+        "field": "payment_days",
+        "operator": "<=",
+        "threshold": 60,
+        "unit": "days"
+      },
+
+      "evidence_requirement": "Every extracted payment deadline must include an exact quote from the contract.",
+
+      "not_found_condition": "No evaluable payment deadline for valid supplier invoices can be extracted.",
+
+      "review_triggers": [
+        "A potentially violating payment deadline is excluded as non-applicable.",
+        "The payment trigger event is materially ambiguous.",
+        "The payment period cannot be normalized to calendar days."
+      ]
+    },
+
+    {
+      "rule_id": "R03",
+      "name": "Liability Cap",
+      "policy": "The applicable aggregate liability cap must not exceed the total contract fees.",
+
+      "required_facts": [
+        "liability_cap_amount_or_formula",
+        "liability_scope",
+        "contract_fee_amount_or_basis"
+      ],
+
+      "applicability_criteria": "Aggregate liability caps applicable to the contractual relationship are in scope. Specialized caps, carve-outs, and schedule-specific liability provisions must be extracted separately rather than silently merged.",
+
+      "evaluation_mode": "DETERMINISTIC_WHEN_EVALUABLE",
+      "quantifier": "ALL",
+
+      "evaluation_logic": {
+        "type": "liability_vs_contract_fees",
+        "condition": "For every applicable and numerically comparable liability cap, liability_cap must be less than or equal to the corresponding total contract fees."
+      },
+
+      "evidence_requirement": "Both the liability cap and the fee basis used for comparison must be supported by exact contract quotes.",
+
+      "not_found_condition": "No liability cap is found, or relevant liability provisions exist but the facts required for a reliable numeric comparison cannot be established.",
+
+      "review_triggers": [
+        "A liability formula cannot be normalized against the available fee basis.",
+        "Multiple liability caps have unclear scope.",
+        "A carve-out or schedule-specific cap creates material applicability ambiguity.",
+        "A potentially violating cap is excluded as non-applicable."
+      ]
+    },
+
+    {
+      "rule_id": "R04",
+      "name": "Governing Law",
+      "policy": "The main agreement and all incorporated schedules and annexes must be governed by the laws of the Republic of Türkiye.",
+
+      "required_facts": [
+        "governing_law",
+        "governed_scope"
+      ],
+
+      "applicability_criteria": "Any substantive governing-law provision applicable to the main agreement or an incorporated schedule, annex, or other document forming part of the contractual relationship is in scope. Venue or jurisdiction provisions alone are not governing-law provisions.",
+
+      "evaluation_mode": "DETERMINISTIC",
+      "quantifier": "ALL",
+
+      "evaluation_logic": {
+        "type": "allowed_value",
+        "field": "governing_law",
+        "allowed_values": [
+          "Republic of Türkiye",
+          "Türkiye",
+          "Turkish law"
+        ]
+      },
+
+      "evidence_requirement": "Every governing-law fact must include the exact clause selecting the applicable substantive law.",
+
+      "not_found_condition": "No substantive governing-law provision can be identified.",
+
+      "review_triggers": [
+        "It is unclear whether an identified document forms part of the contractual relationship.",
+        "The language does not clearly distinguish governing law from jurisdiction or venue.",
+        "A potentially non-compliant governing-law provision is excluded as non-applicable."
+      ]
+    },
+
+    {
+      "rule_id": "R05",
+      "name": "Confidentiality",
+      "policy": "The contract must impose confidentiality obligations on both Customer and Supplier.",
+
+      "required_facts": [
+        "confidentiality_obligation_present",
+        "obligated_parties",
+        "material_exclusions"
+      ],
+
+      "applicability_criteria": "Clauses that create, limit, disclaim, or materially modify confidentiality obligations for Customer or Supplier are in scope.",
+
+      "evaluation_mode": "SEMANTIC_EXTRACTION_DETERMINISTIC_AGGREGATION",
+      "quantifier": "ALL_REQUIRED_PARTIES",
+
+      "evaluation_logic": {
+        "type": "required_party_coverage",
+        "required_parties": [
+          "CUSTOMER",
+          "SUPPLIER"
+        ]
+      },
+
+      "evidence_requirement": "The obligations or exclusions used to determine coverage for each party must be supported by exact contract quotes.",
+
+      "not_found_condition": "No usable clause establishing or disclaiming confidentiality obligations can be identified.",
+
+      "review_triggers": [
+        "A confidentiality obligation exists but the obligated party is unclear.",
+        "Multiple clauses materially conflict on confidentiality coverage.",
+        "An excluded candidate could remove confidentiality protection for a required party."
+      ]
+    },
+
+    {
+      "rule_id": "R06",
+      "name": "Automatic Renewal",
+      "policy": "The agreement must not renew automatically. Renewal must require an affirmative agreement or action by the parties.",
+
+      "required_facts": [
+        "renewal_mechanism",
+        "auto_renewal_present",
+        "explicit_no_auto_renewal"
+      ],
+
+      "applicability_criteria": "Clauses governing renewal, extension, rollover, or continuation of the agreement after expiration are in scope.",
+
+      "evaluation_mode": "SEMANTIC_EXTRACTION_DETERMINISTIC_AGGREGATION",
+      "quantifier": "ANY_VIOLATION",
+
+      "evaluation_logic": {
+        "type": "automatic_renewal",
+        "non_compliant_when": "At least one applicable clause explicitly establishes automatic renewal.",
+        "compliant_when": "At least one applicable clause explicitly establishes that renewal is not automatic or requires affirmative mutual agreement, and no applicable automatic-renewal clause exists.",
+        "not_found_when": "The available clauses establish neither automatic renewal nor an explicit absence of automatic renewal."
+      },
+
+      "evidence_requirement": "The renewal mechanism used for classification must be supported by an exact quote.",
+
+      "not_found_condition": "There is insufficient information to establish either automatic renewal or an explicit non-automatic renewal mechanism.",
+
+      "review_triggers": [
+        "Renewal or post-expiry continuation language exists but it is unclear whether continuation is automatic.",
+        "A potentially violating automatic-renewal candidate is excluded as non-applicable.",
+        "Multiple renewal provisions materially conflict."
+      ]
+    }
+  ]
+}

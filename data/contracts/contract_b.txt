@@ -1,0 +1,41 @@
+SUPPLIER SERVICES AGREEMENT — CONTRACT B
+
+B01 — Parties and Purpose
+
+This Supplier Services Agreement is entered into between Meridian Retail A.Ş. (“Customer”) and Redbridge Systems Ltd. (“Supplier”) for infrastructure monitoring and technical support services.
+
+B02 — Initial Term
+
+The Agreement begins on 1 January 2027 and continues for twelve (12) months.
+
+B03 — Contract Fees
+
+The total fees payable under this Agreement for the initial term are TRY 100,000.
+
+B04 — Payment Terms
+
+Customer shall pay all valid invoices within ninety (90) calendar days after receipt of the relevant invoice.
+
+B05 — Termination for Convenience
+
+Either party may terminate this Agreement for convenience upon fifteen (15) days’ prior written notice to the other party.
+
+B06 — Limitation of Liability
+
+Supplier’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 200,000.
+
+B07 — Confidentiality
+
+Supplier shall keep Customer’s Confidential Information confidential and shall not disclose it except as required for performance of the Services. Customer shall have no corresponding confidentiality obligation with respect to information received from Supplier.
+
+B08 — Governing Law
+
+This Agreement shall be governed by and construed in accordance with the laws of England and Wales.
+
+B09 — Automatic Renewal
+
+At the end of the initial term, this Agreement shall automatically renew for successive twelve-month periods unless either party gives written notice of non-renewal at least thirty (30) days before the end of the current term.
+
+B10 — Entire Agreement
+
+This Agreement constitutes the entire agreement between the parties regarding its subject matter.
