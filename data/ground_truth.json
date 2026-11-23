@@ -1,0 +1,347 @@
+{
+  "dataset_version": "1.0",
+  "ruleset": "fixed_six_rule_set",
+  "contracts": {
+    "contract_a": {
+      "expected_findings": {
+        "R01": {
+          "expected_status": "COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "A05"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A05",
+              "notice_days": 45,
+              "termination_type": "convenience",
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R02": {
+          "expected_status": "COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "A04"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A04",
+              "payment_days": 45,
+              "trigger_event": "receipt_of_valid_invoice",
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R03": {
+          "expected_status": "COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "A03",
+            "A07"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A03",
+              "contract_fees": 120000,
+              "currency": "TRY"
+            },
+            {
+              "clause_id": "A07",
+              "liability_cap": 100000,
+              "currency": "TRY",
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R04": {
+          "expected_status": "COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "A09"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A09",
+              "governing_law": "Republic of Türkiye",
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R05": {
+          "expected_status": "COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "A08"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A08",
+              "confidentiality_obligation_present": true,
+              "obligated_parties": [
+                "CUSTOMER",
+                "SUPPLIER"
+              ],
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R06": {
+          "expected_status": "COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "A10"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A10",
+              "auto_renewal_present": false,
+              "explicit_no_auto_renewal": true,
+              "renewal_requires_mutual_written_agreement": true,
+              "applicability": "APPLICABLE"
+            }
+          ]
+        }
+      }
+    },
+    "contract_b": {
+      "expected_findings": {
+        "R01": {
+          "expected_status": "NON_COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "B05"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B05",
+              "notice_days": 15,
+              "termination_type": "convenience",
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R02": {
+          "expected_status": "NON_COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "B04"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B04",
+              "payment_days": 90,
+              "trigger_event": "receipt_of_valid_invoice",
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R03": {
+          "expected_status": "NON_COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "B03",
+            "B06"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B03",
+              "contract_fees": 100000,
+              "currency": "TRY"
+            },
+            {
+              "clause_id": "B06",
+              "liability_cap": 200000,
+              "currency": "TRY",
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R04": {
+          "expected_status": "NON_COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "B08"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B08",
+              "governing_law": "England and Wales",
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R05": {
+          "expected_status": "NON_COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "B07"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B07",
+              "confidentiality_obligation_present": true,
+              "obligated_parties": [
+                "SUPPLIER"
+              ],
+              "customer_explicitly_excluded": true,
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R06": {
+          "expected_status": "NON_COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "B09"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B09",
+              "auto_renewal_present": true,
+              "renewal_period_months": 12,
+              "opt_out_notice_days": 30,
+              "applicability": "APPLICABLE"
+            }
+          ]
+        }
+      }
+    },
+    "contract_c": {
+      "expected_findings": {
+        "R01": {
+          "expected_status": "COMPLIANT",
+          "requires_human_review": true,
+          "relevant_clause_ids": [
+            "C05",
+            "C06"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C05",
+              "notice_days": 45,
+              "termination_type": "convenience",
+              "applicability": "APPLICABLE"
+            },
+            {
+              "clause_id": "C06",
+              "notice_days": 15,
+              "termination_type": "security_schedule_failure",
+              "applicability": "AMBIGUOUS"
+            }
+          ],
+          "review_reason": "A potentially violating 15-day termination right exists, but whether a Security Schedule-specific termination right is within the policy scope requires human review."
+        },
+        "R02": {
+          "expected_status": "COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "C04"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C04",
+              "payment_days": 45,
+              "trigger_event": "receipt_of_valid_invoice",
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R03": {
+          "expected_status": "NOT_FOUND",
+          "requires_human_review": true,
+          "relevant_clause_ids": [
+            "C03",
+            "C07",
+            "C08"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C03",
+              "contract_fees": null,
+              "fee_basis": "individual Statements of Work"
+            },
+            {
+              "clause_id": "C07",
+              "liability_cap_formula": "fees paid or payable during the preceding 12 months",
+              "normalized_liability_cap": null,
+              "applicability": "APPLICABLE"
+            },
+            {
+              "clause_id": "C08",
+              "liability_cap_formula": "two times the fees attributable to the affected Services",
+              "normalized_liability_cap": null,
+              "applicability": "AMBIGUOUS"
+            }
+          ],
+          "review_reason": "Liability caps exist, but the contract does not provide sufficient fee values to compare the caps against total contract fees, and a separate Security Schedule cap creates additional scope ambiguity."
+        },
+        "R04": {
+          "expected_status": "NON_COMPLIANT",
+          "requires_human_review": true,
+          "relevant_clause_ids": [
+            "C09",
+            "C10"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C09",
+              "governing_law": "Republic of Türkiye",
+              "scope": "Agreement",
+              "applicability": "APPLICABLE"
+            },
+            {
+              "clause_id": "C10",
+              "governing_law": "Germany",
+              "scope": "Security Schedule",
+              "applicability": "AMBIGUOUS"
+            }
+          ],
+          "review_reason": "The main Agreement selects Turkish law, while an incorporated Security Schedule selects German law. The system should not silently decide the policy scope."
+        },
+        "R05": {
+          "expected_status": "COMPLIANT",
+          "requires_human_review": false,
+          "relevant_clause_ids": [
+            "C11",
+            "C12"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C11",
+              "confidentiality_obligation_present": true,
+              "obligated_parties": [
+                "CUSTOMER",
+                "SUPPLIER"
+              ],
+              "applicability": "APPLICABLE"
+            },
+            {
+              "clause_id": "C12",
+              "information_category": "Benchmark Reports",
+              "classified_as_confidential_information": false,
+              "applicability": "APPLICABLE"
+            }
+          ]
+        },
+        "R06": {
+          "expected_status": "NOT_FOUND",
+          "requires_human_review": true,
+          "relevant_clause_ids": [
+            "C13"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C13",
+              "auto_renewal_present": null,
+              "renewal_mechanism": "continued performance while renewal discussions are ongoing",
+              "applicability": "AMBIGUOUS"
+            }
+          ],
+          "review_reason": "The clause discusses post-expiry continuation but does not clearly establish either automatic renewal or an explicit prohibition on automatic renewal."
+        }
+      }
+    }
+  }
+}

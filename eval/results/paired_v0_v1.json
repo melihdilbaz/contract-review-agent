@@ -1,0 +1,920 @@
+{
+  "experiment": "paired_v0_v1_replay",
+  "source": "original_v0_evaluation",
+  "dataset_version": "1.0",
+  "v0": {
+    "version": "v0",
+    "metrics": {
+      "classification_accuracy": 0.6666666666666666,
+      "violation_recall": 0.5714285714285714,
+      "exact_evidence_quote_validity": 0.5,
+      "human_review_recall": 0.0,
+      "successful_review_coverage": 0.6666666666666666,
+      "end_to_end_correct_prediction_rate": 0.2222222222222222,
+      "counts": {
+        "contracts_total": 3,
+        "contracts_successful": 2,
+        "rules_total": 18,
+        "rules_successfully_predicted": 12,
+        "classification_correct": 8,
+        "expected_violations": 7,
+        "detected_violations": 4,
+        "expected_human_reviews": 4,
+        "detected_human_reviews": 0,
+        "end_to_end_correct": 4
+      },
+      "usage": {
+        "prompt_tokens_total": 1693,
+        "completion_tokens_total": 1129,
+        "total_tokens": 2822,
+        "latency_ms_total": 59474.12,
+        "latency_ms_average": 29737.06,
+        "tokens_per_contract_average": 1411.0
+      }
+    },
+    "contracts": [
+      {
+        "contract_id": "contract_a",
+        "review_success": true,
+        "error_type": null,
+        "error": null,
+        "latency_ms": 38073.48,
+        "usage": {
+          "prompt_tokens": 888,
+          "completion_tokens": 543,
+          "total_tokens": 1431
+        },
+        "rules": [
+          {
+            "rule_id": "R01",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "Either party may terminate this Agreement for convenience by giving the other party at least forty-five (45) days’ prior written notice."
+            ],
+            "evidence_valid": true,
+            "reason": "The contract specifies a 45-day notice period for termination for convenience, which is less than the required 30 days.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R02",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "Customer shall pay each valid and undisputed invoice within forty-five (45) calendar days after receipt of the invoice."
+            ],
+            "evidence_valid": true,
+            "reason": "The contract stipulates a 45-day payment term, which exceeds the 60-day maximum allowed by the policy.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R03",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "Except for liabilities that cannot lawfully be limited, each party’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 100,000."
+            ],
+            "evidence_valid": true,
+            "reason": "The aggregate liability cap of TRY 100,000 does not exceed the total contract fees of TRY 120,000.",
+            "end_to_end_correct": true
+          },
+          {
+            "rule_id": "R04",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+            ],
+            "evidence_valid": true,
+            "reason": "The contract explicitly states that it is governed by the laws of the Republic of Türkiye.",
+            "end_to_end_correct": true
+          },
+          {
+            "rule_id": "R05",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "Each party shall keep confidential all Confidential Information received from the other party and shall use such information solely for performing its obligations under this Agreement. Neither party may disclose the other party’s Confidential Information to a third party except as required by law or with the other party’s prior written consent."
+            ],
+            "evidence_valid": true,
+            "reason": "The contract imposes confidentiality obligations on both Customer and Supplier.",
+            "end_to_end_correct": true
+          },
+          {
+            "rule_id": "R06",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "This Agreement will not renew automatically. Any renewal or extension requires the express written agreement of both parties before expiration of the then-current term."
+            ],
+            "evidence_valid": true,
+            "reason": "The agreement does not renew automatically, and renewal requires an affirmative agreement or action by the parties.",
+            "end_to_end_correct": true
+          }
+        ]
+      },
+      {
+        "contract_id": "contract_b",
+        "review_success": true,
+        "error_type": null,
+        "error": null,
+        "latency_ms": 21400.64,
+        "usage": {
+          "prompt_tokens": 805,
+          "completion_tokens": 586,
+          "total_tokens": 1391
+        },
+        "rules": [
+          {
+            "rule_id": "R01",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "B05 — Termination for Convenience\nEither party may terminate this Agreement for convenience upon fifteen (15) days’ prior written notice to the other party."
+            ],
+            "evidence_valid": false,
+            "reason": "The contract provides only 15 days of prior written notice for termination for convenience, which is less than the required 30 days.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R02",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "B04 — Payment Terms\nCustomer shall pay all valid invoices within ninety (90) calendar days after receipt of the relevant invoice."
+            ],
+            "evidence_valid": false,
+            "reason": "The contract stipulates payment within 90 days, which exceeds the maximum allowed 60 days.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R03",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "B06 — Limitation of Liability\nSupplier’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 200,000."
+            ],
+            "evidence_valid": false,
+            "reason": "The aggregate liability cap (TRY 200,000) does not exceed the total contract fees (TRY 100,000).",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R04",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "B08 — Governing Law\nThis Agreement shall be governed by and construed in accordance with the laws of England and Wales."
+            ],
+            "evidence_valid": false,
+            "reason": "The contract is governed by the laws of England and Wales, not the Republic of Türkiye as required.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R05",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "B07 — Confidentiality\nSupplier shall keep Customer’s Confidential Information confidential and shall not disclose it except as required for performance of the Services. Customer shall have no corresponding confidentiality obligation with respect to information received from Supplier."
+            ],
+            "evidence_valid": false,
+            "reason": "The contract imposes confidentiality obligations on both parties, although the Customer's obligation is limited to information received from the Supplier.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R06",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "B09 — Automatic Renewal\nAt the end of the initial term, this Agreement shall automatically renew for successive twelve-month periods unless either party gives written notice of non-renewal at least thirty (30) days before the end of the current term."
+            ],
+            "evidence_valid": false,
+            "reason": "The contract allows for automatic renewal without requiring an affirmative agreement or action by the parties.",
+            "end_to_end_correct": false
+          }
+        ]
+      },
+      {
+        "contract_id": "contract_c",
+        "review_success": false,
+        "error_type": "RuntimeError",
+        "error": "Expected 6 findings, received 7.",
+        "latency_ms": null,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "total_tokens": 0
+        },
+        "rules": [
+          {
+            "rule_id": "R01",
+            "review_success": false,
+            "expected_status": "COMPLIANT",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": true,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R02",
+            "review_success": false,
+            "expected_status": "COMPLIANT",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R03",
+            "review_success": false,
+            "expected_status": "NOT_FOUND",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": true,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R04",
+            "review_success": false,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": true,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R05",
+            "review_success": false,
+            "expected_status": "COMPLIANT",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R06",
+            "review_success": false,
+            "expected_status": "NOT_FOUND",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": true,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          }
+        ]
+      }
+    ],
+    "verification_results": [
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R01",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R02",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R03",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R04",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R05",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R06",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R01",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R02",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R03",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R04",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R05",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R06",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      }
+    ]
+  },
+  "v1": {
+    "version": "v1",
+    "metrics": {
+      "classification_accuracy": 0.6666666666666666,
+      "violation_recall": 0.5714285714285714,
+      "exact_evidence_quote_validity": 0.5,
+      "human_review_recall": 0.0,
+      "successful_review_coverage": 0.6666666666666666,
+      "end_to_end_correct_prediction_rate": 0.2222222222222222,
+      "counts": {
+        "contracts_total": 3,
+        "contracts_successful": 2,
+        "rules_total": 18,
+        "rules_successfully_predicted": 12,
+        "classification_correct": 8,
+        "expected_violations": 7,
+        "detected_violations": 4,
+        "expected_human_reviews": 4,
+        "detected_human_reviews": 0,
+        "end_to_end_correct": 4
+      },
+      "usage": {
+        "prompt_tokens_total": 1693,
+        "completion_tokens_total": 1129,
+        "total_tokens": 2822,
+        "latency_ms_total": 59474.12,
+        "latency_ms_average": 29737.06,
+        "tokens_per_contract_average": 1411.0
+      }
+    },
+    "contracts": [
+      {
+        "contract_id": "contract_a",
+        "review_success": true,
+        "error_type": null,
+        "error": null,
+        "latency_ms": 38073.48,
+        "usage": {
+          "prompt_tokens": 888,
+          "completion_tokens": 543,
+          "total_tokens": 1431
+        },
+        "rules": [
+          {
+            "rule_id": "R01",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "Either party may terminate this Agreement for convenience by giving the other party at least forty-five (45) days’ prior written notice."
+            ],
+            "evidence_valid": true,
+            "reason": "The contract specifies a 45-day notice period for termination for convenience, which is less than the required 30 days.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R02",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "Customer shall pay each valid and undisputed invoice within forty-five (45) calendar days after receipt of the invoice."
+            ],
+            "evidence_valid": true,
+            "reason": "The contract stipulates a 45-day payment term, which exceeds the 60-day maximum allowed by the policy.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R03",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "Except for liabilities that cannot lawfully be limited, each party’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 100,000."
+            ],
+            "evidence_valid": true,
+            "reason": "The aggregate liability cap of TRY 100,000 does not exceed the total contract fees of TRY 120,000.",
+            "end_to_end_correct": true
+          },
+          {
+            "rule_id": "R04",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+            ],
+            "evidence_valid": true,
+            "reason": "The contract explicitly states that it is governed by the laws of the Republic of Türkiye.",
+            "end_to_end_correct": true
+          },
+          {
+            "rule_id": "R05",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "Each party shall keep confidential all Confidential Information received from the other party and shall use such information solely for performing its obligations under this Agreement. Neither party may disclose the other party’s Confidential Information to a third party except as required by law or with the other party’s prior written consent."
+            ],
+            "evidence_valid": true,
+            "reason": "The contract imposes confidentiality obligations on both Customer and Supplier.",
+            "end_to_end_correct": true
+          },
+          {
+            "rule_id": "R06",
+            "review_success": true,
+            "expected_status": "COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": false,
+            "human_review_correct": true,
+            "evidence": [
+              "This Agreement will not renew automatically. Any renewal or extension requires the express written agreement of both parties before expiration of the then-current term."
+            ],
+            "evidence_valid": true,
+            "reason": "The agreement does not renew automatically, and renewal requires an affirmative agreement or action by the parties.",
+            "end_to_end_correct": true
+          }
+        ]
+      },
+      {
+        "contract_id": "contract_b",
+        "review_success": true,
+        "error_type": null,
+        "error": null,
+        "latency_ms": 21400.64,
+        "usage": {
+          "prompt_tokens": 805,
+          "completion_tokens": 586,
+          "total_tokens": 1391
+        },
+        "rules": [
+          {
+            "rule_id": "R01",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": true,
+            "human_review_correct": false,
+            "evidence": [
+              "B05 — Termination for Convenience\nEither party may terminate this Agreement for convenience upon fifteen (15) days’ prior written notice to the other party."
+            ],
+            "evidence_valid": false,
+            "reason": "The contract provides only 15 days of prior written notice for termination for convenience, which is less than the required 30 days.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R02",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": true,
+            "human_review_correct": false,
+            "evidence": [
+              "B04 — Payment Terms\nCustomer shall pay all valid invoices within ninety (90) calendar days after receipt of the relevant invoice."
+            ],
+            "evidence_valid": false,
+            "reason": "The contract stipulates payment within 90 days, which exceeds the maximum allowed 60 days.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R03",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": true,
+            "human_review_correct": false,
+            "evidence": [
+              "B06 — Limitation of Liability\nSupplier’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 200,000."
+            ],
+            "evidence_valid": false,
+            "reason": "The aggregate liability cap (TRY 200,000) does not exceed the total contract fees (TRY 100,000).",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R04",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": true,
+            "human_review_correct": false,
+            "evidence": [
+              "B08 — Governing Law\nThis Agreement shall be governed by and construed in accordance with the laws of England and Wales."
+            ],
+            "evidence_valid": false,
+            "reason": "The contract is governed by the laws of England and Wales, not the Republic of Türkiye as required.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R05",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "COMPLIANT",
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": true,
+            "human_review_correct": false,
+            "evidence": [
+              "B07 — Confidentiality\nSupplier shall keep Customer’s Confidential Information confidential and shall not disclose it except as required for performance of the Services. Customer shall have no corresponding confidentiality obligation with respect to information received from Supplier."
+            ],
+            "evidence_valid": false,
+            "reason": "The contract imposes confidentiality obligations on both parties, although the Customer's obligation is limited to information received from the Supplier.",
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R06",
+            "review_success": true,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": "NON_COMPLIANT",
+            "status_correct": true,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": true,
+            "human_review_correct": false,
+            "evidence": [
+              "B09 — Automatic Renewal\nAt the end of the initial term, this Agreement shall automatically renew for successive twelve-month periods unless either party gives written notice of non-renewal at least thirty (30) days before the end of the current term."
+            ],
+            "evidence_valid": false,
+            "reason": "The contract allows for automatic renewal without requiring an affirmative agreement or action by the parties.",
+            "end_to_end_correct": false
+          }
+        ]
+      },
+      {
+        "contract_id": "contract_c",
+        "review_success": false,
+        "error_type": "RuntimeError",
+        "error": "Expected 6 findings, received 7.",
+        "latency_ms": null,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "total_tokens": 0
+        },
+        "rules": [
+          {
+            "rule_id": "R01",
+            "review_success": false,
+            "expected_status": "COMPLIANT",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": true,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R02",
+            "review_success": false,
+            "expected_status": "COMPLIANT",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R03",
+            "review_success": false,
+            "expected_status": "NOT_FOUND",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": true,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R04",
+            "review_success": false,
+            "expected_status": "NON_COMPLIANT",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": true,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R05",
+            "review_success": false,
+            "expected_status": "COMPLIANT",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": false,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          },
+          {
+            "rule_id": "R06",
+            "review_success": false,
+            "expected_status": "NOT_FOUND",
+            "predicted_status": null,
+            "status_correct": false,
+            "expected_requires_human_review": true,
+            "predicted_requires_human_review": null,
+            "human_review_correct": false,
+            "evidence": [],
+            "evidence_valid": false,
+            "end_to_end_correct": false
+          }
+        ]
+      }
+    ],
+    "verification_results": [
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R01",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R02",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R03",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R04",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R05",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_a",
+        "rule_id": "R06",
+        "evidence_valid": true,
+        "verification_reason": "VALID",
+        "human_review_before": false,
+        "human_review_after": false,
+        "escalated_due_to_evidence": false
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R01",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": true,
+        "escalated_due_to_evidence": true
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R02",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": true,
+        "escalated_due_to_evidence": true
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R03",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": true,
+        "escalated_due_to_evidence": true
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R04",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": true,
+        "escalated_due_to_evidence": true
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R05",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": true,
+        "escalated_due_to_evidence": true
+      },
+      {
+        "contract_id": "contract_b",
+        "rule_id": "R06",
+        "evidence_valid": false,
+        "verification_reason": "QUOTE_NOT_FOUND",
+        "human_review_before": false,
+        "human_review_after": true,
+        "escalated_due_to_evidence": true
+      }
+    ]
+  },
+  "v1_diagnostics": {
+    "invalid_evidence_count": 6,
+    "evidence_escalation_count": 6,
+    "invalid_evidence_escalation_rate": 1.0
+  }
+}

@@ -1,0 +1,771 @@
+{
+  "version": "v1",
+  "dataset_version": "1.0",
+  "ruleset": "fixed_six_rule_set",
+  "metrics": {
+    "classification_accuracy": 0.5555555555555556,
+    "violation_recall": 0.7142857142857143,
+    "exact_evidence_quote_validity": 0.3333333333333333,
+    "human_review_recall": 1.0,
+    "successful_review_coverage": 1.0,
+    "end_to_end_correct_prediction_rate": 0.2222222222222222,
+    "counts": {
+      "contracts_total": 3,
+      "contracts_successful": 3,
+      "rules_total": 18,
+      "rules_successfully_predicted": 18,
+      "classification_correct": 10,
+      "expected_violations": 7,
+      "detected_violations": 5,
+      "expected_human_reviews": 4,
+      "detected_human_reviews": 4,
+      "end_to_end_correct": 4
+    },
+    "usage": {
+      "prompt_tokens_total": 2727,
+      "completion_tokens_total": 1774,
+      "total_tokens": 4501,
+      "latency_ms_total": 60385.47,
+      "latency_ms_average": 20128.49,
+      "tokens_per_contract_average": 1500.3333333333333
+    }
+  },
+  "contracts": [
+    {
+      "contract_id": "contract_a",
+      "contract_path": "data/contracts/contract_a.txt",
+      "review_success": true,
+      "error_type": null,
+      "error": null,
+      "latency_ms": 19304.86,
+      "usage": {
+        "prompt_tokens": 888,
+        "completion_tokens": 543,
+        "total_tokens": 1431
+      },
+      "request_id": "fb5deaf9b38b470dbf917c8089eb1cb9",
+      "model": "contract-review-qwen3-8b",
+      "finish_reason": "stop",
+      "generation_settings": {
+        "temperature": 0,
+        "seed": 42,
+        "max_tokens": 1024
+      },
+      "rules": [
+        {
+          "rule_id": "R01",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": false,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Either party may terminate this Agreement for convenience by giving the other party at least forty-five (45) days’ prior written notice."
+          ],
+          "evidence_valid": true,
+          "reason": "The contract specifies a 45-day notice period for termination for convenience, which is less than the required 30 days.",
+          "relevant_clause_ids": [
+            "A05"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A05",
+              "notice_days": 45,
+              "termination_type": "convenience",
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": true,
+            "evidence_valid": true,
+            "requires_human_review_before": false,
+            "requires_human_review_after": false,
+            "escalated_due_to_evidence": false
+          }
+        },
+        {
+          "rule_id": "R02",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": false,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Customer shall pay each valid and undisputed invoice within forty-five (45) calendar days after receipt of the invoice."
+          ],
+          "evidence_valid": true,
+          "reason": "The contract stipulates a 45-day payment term, which exceeds the 60-day maximum allowed by the policy.",
+          "relevant_clause_ids": [
+            "A04"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A04",
+              "payment_days": 45,
+              "trigger_event": "receipt_of_valid_invoice",
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": true,
+            "evidence_valid": true,
+            "requires_human_review_before": false,
+            "requires_human_review_after": false,
+            "escalated_due_to_evidence": false
+          }
+        },
+        {
+          "rule_id": "R03",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Except for liabilities that cannot lawfully be limited, each party’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 100,000."
+          ],
+          "evidence_valid": true,
+          "reason": "The aggregate liability cap of TRY 100,000 does not exceed the total contract fees of TRY 120,000.",
+          "relevant_clause_ids": [
+            "A03",
+            "A07"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A03",
+              "contract_fees": 120000,
+              "currency": "TRY"
+            },
+            {
+              "clause_id": "A07",
+              "liability_cap": 100000,
+              "currency": "TRY",
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": true,
+          "evidence_verification": {
+            "valid": true,
+            "evidence_valid": true,
+            "requires_human_review_before": false,
+            "requires_human_review_after": false,
+            "escalated_due_to_evidence": false
+          }
+        },
+        {
+          "rule_id": "R04",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+          ],
+          "evidence_valid": true,
+          "reason": "The contract explicitly states that it is governed by the laws of the Republic of Türkiye.",
+          "relevant_clause_ids": [
+            "A09"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A09",
+              "governing_law": "Republic of Türkiye",
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": true,
+          "evidence_verification": {
+            "valid": true,
+            "evidence_valid": true,
+            "requires_human_review_before": false,
+            "requires_human_review_after": false,
+            "escalated_due_to_evidence": false
+          }
+        },
+        {
+          "rule_id": "R05",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Each party shall keep confidential all Confidential Information received from the other party and shall use such information solely for performing its obligations under this Agreement. Neither party may disclose the other party’s Confidential Information to a third party except as required by law or with the other party’s prior written consent."
+          ],
+          "evidence_valid": true,
+          "reason": "The contract imposes confidentiality obligations on both Customer and Supplier.",
+          "relevant_clause_ids": [
+            "A08"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A08",
+              "confidentiality_obligation_present": true,
+              "obligated_parties": [
+                "CUSTOMER",
+                "SUPPLIER"
+              ],
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": true,
+          "evidence_verification": {
+            "valid": true,
+            "evidence_valid": true,
+            "requires_human_review_before": false,
+            "requires_human_review_after": false,
+            "escalated_due_to_evidence": false
+          }
+        },
+        {
+          "rule_id": "R06",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "This Agreement will not renew automatically. Any renewal or extension requires the express written agreement of both parties before expiration of the then-current term."
+          ],
+          "evidence_valid": true,
+          "reason": "The agreement does not renew automatically, and renewal requires an affirmative agreement or action by the parties.",
+          "relevant_clause_ids": [
+            "A10"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "A10",
+              "auto_renewal_present": false,
+              "explicit_no_auto_renewal": true,
+              "renewal_requires_mutual_written_agreement": true,
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": true,
+          "evidence_verification": {
+            "valid": true,
+            "evidence_valid": true,
+            "requires_human_review_before": false,
+            "requires_human_review_after": false,
+            "escalated_due_to_evidence": false
+          }
+        }
+      ]
+    },
+    {
+      "contract_id": "contract_b",
+      "contract_path": "data/contracts/contract_b.txt",
+      "review_success": true,
+      "error_type": null,
+      "error": null,
+      "latency_ms": 20349.76,
+      "usage": {
+        "prompt_tokens": 805,
+        "completion_tokens": 612,
+        "total_tokens": 1417
+      },
+      "request_id": "78c734ae08554cf1a00d43518e3febc7",
+      "model": "contract-review-qwen3-8b",
+      "finish_reason": "stop",
+      "generation_settings": {
+        "temperature": 0,
+        "seed": 42,
+        "max_tokens": 1024
+      },
+      "rules": [
+        {
+          "rule_id": "R01",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": true,
+          "human_review_correct": false,
+          "evidence": [
+            "B05 — Termination for Convenience\nEither party may terminate this Agreement for convenience upon fifteen (15) days’ prior written notice to the other party."
+          ],
+          "evidence_valid": false,
+          "reason": "The contract provides for termination for convenience with only 15 days' prior written notice, which is less than the required 30 days.",
+          "relevant_clause_ids": [
+            "B05"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B05",
+              "notice_days": 15,
+              "termination_type": "convenience",
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        },
+        {
+          "rule_id": "R02",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": true,
+          "human_review_correct": false,
+          "evidence": [
+            "B04 — Payment Terms\nCustomer shall pay all valid invoices within ninety (90) calendar days after receipt of the relevant invoice."
+          ],
+          "evidence_valid": false,
+          "reason": "The contract stipulates payment within 90 calendar days, which exceeds the maximum allowed 60 calendar days.",
+          "relevant_clause_ids": [
+            "B04"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B04",
+              "payment_days": 90,
+              "trigger_event": "receipt_of_valid_invoice",
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        },
+        {
+          "rule_id": "R03",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": false,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": true,
+          "human_review_correct": false,
+          "evidence": [
+            "B06 — Limitation of Liability\nSupplier’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 200,000."
+          ],
+          "evidence_valid": false,
+          "reason": "The aggregate liability cap (TRY 200,000) does not exceed the total contract fees (TRY 100,000) as stated in the contract.",
+          "relevant_clause_ids": [
+            "B03",
+            "B06"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B03",
+              "contract_fees": 100000,
+              "currency": "TRY"
+            },
+            {
+              "clause_id": "B06",
+              "liability_cap": 200000,
+              "currency": "TRY",
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        },
+        {
+          "rule_id": "R04",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": true,
+          "human_review_correct": false,
+          "evidence": [
+            "B08 — Governing Law\nThis Agreement shall be governed by and construed in accordance with the laws of England and Wales."
+          ],
+          "evidence_valid": false,
+          "reason": "The contract specifies governing law as England and Wales, whereas the policy requires the laws of the Republic of Türkiye.",
+          "relevant_clause_ids": [
+            "B08"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B08",
+              "governing_law": "England and Wales",
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        },
+        {
+          "rule_id": "R05",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": false,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": true,
+          "human_review_correct": false,
+          "evidence": [
+            "B07 — Confidentiality\nSupplier shall keep Customer’s Confidential Information confidential and shall not disclose it except as required for performance of the Services. Customer shall have no corresponding confidentiality obligation with respect to information received from Supplier."
+          ],
+          "evidence_valid": false,
+          "reason": "The contract imposes confidentiality obligations on the Supplier, though it does not explicitly require the Customer to have a confidentiality obligation. However, the policy requires confidentiality obligations on both parties.",
+          "relevant_clause_ids": [
+            "B07"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B07",
+              "confidentiality_obligation_present": true,
+              "obligated_parties": [
+                "SUPPLIER"
+              ],
+              "customer_explicitly_excluded": true,
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        },
+        {
+          "rule_id": "R06",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": true,
+          "human_review_correct": false,
+          "evidence": [
+            "B09 — Automatic Renewal\nAt the end of the initial term, this Agreement shall automatically renew for successive twelve-month periods unless either party gives written notice of non-renewal at least thirty (30) days before the end of the current term."
+          ],
+          "evidence_valid": false,
+          "reason": "The contract allows for automatic renewal without requiring an affirmative agreement or action by the parties, violating the policy.",
+          "relevant_clause_ids": [
+            "B09"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "B09",
+              "auto_renewal_present": true,
+              "renewal_period_months": 12,
+              "opt_out_notice_days": 30,
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        }
+      ]
+    },
+    {
+      "contract_id": "contract_c",
+      "contract_path": "data/contracts/contract_c.txt",
+      "review_success": true,
+      "error_type": null,
+      "error": null,
+      "latency_ms": 20730.85,
+      "usage": {
+        "prompt_tokens": 1034,
+        "completion_tokens": 619,
+        "total_tokens": 1653
+      },
+      "request_id": "21aac7445cf84d919f9c0b4d3f72f327",
+      "model": "contract-review-qwen3-8b",
+      "finish_reason": "stop",
+      "generation_settings": {
+        "temperature": 0,
+        "seed": 42,
+        "max_tokens": 1024
+      },
+      "rules": [
+        {
+          "rule_id": "R01",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": false,
+          "expected_requires_human_review": true,
+          "predicted_requires_human_review": true,
+          "human_review_correct": true,
+          "evidence": [
+            "C05 — Termination for Convenience\nEither party may terminate this Agreement for convenience upon forty-five (45) days’ prior written notice."
+          ],
+          "evidence_valid": false,
+          "reason": "The contract provides 45 days' prior written notice for termination for convenience, which is less than the required 30 days.",
+          "relevant_clause_ids": [
+            "C05",
+            "C06"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C05",
+              "notice_days": 45,
+              "termination_type": "convenience",
+              "applicability": "APPLICABLE"
+            },
+            {
+              "clause_id": "C06",
+              "notice_days": 15,
+              "termination_type": "security_schedule_failure",
+              "applicability": "AMBIGUOUS"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        },
+        {
+          "rule_id": "R02",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": false,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": true,
+          "human_review_correct": false,
+          "evidence": [
+            "C04 — Payment Terms\nCustomer shall pay valid and undisputed Supplier invoices within forty-five (45) calendar days after receipt."
+          ],
+          "evidence_valid": false,
+          "reason": "The contract specifies payment within 45 days, which exceeds the 60-day maximum allowed by the policy.",
+          "relevant_clause_ids": [
+            "C04"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C04",
+              "payment_days": 45,
+              "trigger_event": "receipt_of_valid_invoice",
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        },
+        {
+          "rule_id": "R03",
+          "review_success": true,
+          "expected_status": "NOT_FOUND",
+          "predicted_status": "COMPLIANT",
+          "status_correct": false,
+          "expected_requires_human_review": true,
+          "predicted_requires_human_review": true,
+          "human_review_correct": true,
+          "evidence": [
+            "C07 — General Limitation of Liability\nSubject to the exceptions stated elsewhere in this Agreement, each party’s aggregate liability arising under this Agreement shall not exceed the fees paid or payable during the twelve (12) months preceding the event giving rise to the claim."
+          ],
+          "evidence_valid": false,
+          "reason": "The aggregate liability cap is limited to fees paid or payable during the preceding 12 months, which does not exceed the total contract fees.",
+          "relevant_clause_ids": [
+            "C03",
+            "C07",
+            "C08"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C03",
+              "contract_fees": null,
+              "fee_basis": "individual Statements of Work"
+            },
+            {
+              "clause_id": "C07",
+              "liability_cap_formula": "fees paid or payable during the preceding 12 months",
+              "normalized_liability_cap": null,
+              "applicability": "APPLICABLE"
+            },
+            {
+              "clause_id": "C08",
+              "liability_cap_formula": "two times the fees attributable to the affected Services",
+              "normalized_liability_cap": null,
+              "applicability": "AMBIGUOUS"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        },
+        {
+          "rule_id": "R04",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": true,
+          "predicted_requires_human_review": true,
+          "human_review_correct": true,
+          "evidence": [
+            "C09 — Governing Law of the Agreement\nThis Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+          ],
+          "evidence_valid": false,
+          "reason": "The main agreement is governed by Turkish law, which complies with R04. However, the Security Schedule is governed by German law, which is not addressed by R04. Since R04 applies to the main agreement, the finding is compliant.",
+          "relevant_clause_ids": [
+            "C09",
+            "C10"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C09",
+              "governing_law": "Republic of Türkiye",
+              "scope": "Agreement",
+              "applicability": "APPLICABLE"
+            },
+            {
+              "clause_id": "C10",
+              "governing_law": "Germany",
+              "scope": "Security Schedule",
+              "applicability": "AMBIGUOUS"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        },
+        {
+          "rule_id": "R05",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": true,
+          "human_review_correct": false,
+          "evidence": [
+            "C11 — Confidentiality Obligations\nEach party shall protect the other party’s Confidential Information using reasonable care and shall not disclose such Confidential Information except to personnel and subcontractors who need it to perform obligations under this Agreement and who are subject to confidentiality obligations."
+          ],
+          "evidence_valid": false,
+          "reason": "The contract imposes confidentiality obligations on both parties.",
+          "relevant_clause_ids": [
+            "C11",
+            "C12"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C11",
+              "confidentiality_obligation_present": true,
+              "obligated_parties": [
+                "CUSTOMER",
+                "SUPPLIER"
+              ],
+              "applicability": "APPLICABLE"
+            },
+            {
+              "clause_id": "C12",
+              "information_category": "Benchmark Reports",
+              "classified_as_confidential_information": false,
+              "applicability": "APPLICABLE"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        },
+        {
+          "rule_id": "R06",
+          "review_success": true,
+          "expected_status": "NOT_FOUND",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": false,
+          "expected_requires_human_review": true,
+          "predicted_requires_human_review": true,
+          "human_review_correct": true,
+          "evidence": [
+            "C13 — Post-Expiry Performance\nFollowing expiration of the initial term, the parties may continue performance under the same commercial terms while discussions regarding a possible renewal are ongoing."
+          ],
+          "evidence_valid": false,
+          "reason": "The contract allows for continued performance after the initial term without requiring an affirmative agreement for renewal, violating R06.",
+          "relevant_clause_ids": [
+            "C13"
+          ],
+          "expected_facts": [
+            {
+              "clause_id": "C13",
+              "auto_renewal_present": null,
+              "renewal_mechanism": "continued performance while renewal discussions are ongoing",
+              "applicability": "AMBIGUOUS"
+            }
+          ],
+          "end_to_end_correct": false,
+          "evidence_verification": {
+            "valid": false,
+            "evidence_valid": false,
+            "requires_human_review_before": false,
+            "requires_human_review_after": true,
+            "escalated_due_to_evidence": true
+          }
+        }
+      ]
+    }
+  ]
+}

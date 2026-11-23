@@ -1,0 +1,1778 @@
+{
+  "version": "v2",
+  "dataset_version": "1.0",
+  "ruleset": "fixed_six_rule_set",
+  "ground_truth_sha256": "411d516ad3e28e13d4343edd51b57b7d85b2a5019cebc04c8b7e1b760ea5cbe9",
+  "comparison_note": "V0/V1 paired replay uses frozen LLM outputs. V2 uses a different extraction task and prompt. Therefore V0/V1 versus V2 is not a paired LLM comparison.",
+  "metrics": {
+    "classification_accuracy": 0.7777777777777778,
+    "violation_recall": 0.7142857142857143,
+    "exact_evidence_quote_validity": 1.0,
+    "human_review_recall": 0.5,
+    "successful_review_coverage": 1.0,
+    "end_to_end_correct_prediction_rate": 0.7222222222222222,
+    "counts": {
+      "contracts_total": 3,
+      "contracts_successful": 3,
+      "rules_total": 18,
+      "rules_successfully_predicted": 18,
+      "classification_correct": 14,
+      "expected_violations": 7,
+      "detected_violations": 5,
+      "expected_human_reviews": 4,
+      "detected_human_reviews": 2,
+      "end_to_end_correct": 13
+    },
+    "usage": {
+      "prompt_tokens_total": 4557,
+      "completion_tokens_total": 2677,
+      "total_tokens": 7234,
+      "latency_ms_total": 73141.1,
+      "latency_ms_average": 24380.36666666667,
+      "tokens_per_contract_average": 2411.3333333333335
+    },
+    "candidate_recall": 0.84,
+    "candidate_evidence_validity": 1.0,
+    "v2_counts": {
+      "expected_relevant_clauses": 25,
+      "detected_relevant_clauses": 21,
+      "verified_candidates": 21,
+      "valid_candidate_evidence": 21
+    }
+  },
+  "contracts": [
+    {
+      "contract_id": "contract_a",
+      "contract_path": "data/contracts/contract_a.txt",
+      "review_success": true,
+      "error_type": null,
+      "error": null,
+      "latency_ms": 21269.09,
+      "usage": {
+        "prompt_tokens": 1498,
+        "completion_tokens": 759,
+        "total_tokens": 2257
+      },
+      "request_id": "7e946800e22445938cd8918464fae2f4",
+      "model": "contract-review-qwen3-8b",
+      "finish_reason": "stop",
+      "generation_settings": {
+        "temperature": 0,
+        "seed": 42,
+        "max_tokens": 4096
+      },
+      "extraction": {
+        "candidates": [
+          {
+            "clause_id": "A05",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Either party may terminate this Agreement for convenience by giving the other party at least forty-five (45) days’ prior written notice."
+            ],
+            "rule_id": "R01",
+            "facts": {
+              "notice_days": 45,
+              "termination_type": "CONVENIENCE",
+              "party_scope": "BOTH"
+            }
+          },
+          {
+            "clause_id": "A04",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Customer shall pay each valid and undisputed invoice within forty-five (45) calendar days after receipt of the invoice."
+            ],
+            "rule_id": "R02",
+            "facts": {
+              "payment_days": 45,
+              "trigger_event": "INVOICE_RECEIPT",
+              "invoice_scope": "VALID_SUPPLIER_INVOICE"
+            }
+          },
+          {
+            "clause_id": "A07",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Except for liabilities that cannot lawfully be limited, each party’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 100,000."
+            ],
+            "rule_id": "R03",
+            "facts": {
+              "fact_type": "LIABILITY_CAP",
+              "cap_kind": null,
+              "cap_amount": 100000.0,
+              "currency": "TRY",
+              "fee_multiple": 1.0,
+              "fee_period_months": 12,
+              "liability_scope": "BOTH_PARTIES"
+            }
+          },
+          {
+            "clause_id": "A09",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+            ],
+            "rule_id": "R04",
+            "facts": {
+              "governing_law": "Republic of Türkiye",
+              "governed_scope": "MAIN_AGREEMENT",
+              "scope_kind": "MAIN_AGREEMENT"
+            }
+          },
+          {
+            "clause_id": "A08",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Each party shall keep confidential all Confidential Information received from the other party and shall use such information solely for performing its obligations under this Agreement."
+            ],
+            "rule_id": "R05",
+            "facts": {
+              "obligation_present": true,
+              "customer_obligated": true,
+              "supplier_obligated": true,
+              "explicit_customer_exclusion": false,
+              "explicit_supplier_exclusion": false,
+              "information_category": "CONFIDENTIAL_INFORMATION",
+              "is_general_confidentiality_obligation": true
+            }
+          },
+          {
+            "clause_id": "A10",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "This Agreement will not renew automatically. Any renewal or extension requires the express written agreement of both parties before expiration of the then-current term."
+            ],
+            "rule_id": "R06",
+            "facts": {
+              "renewal_mechanism": null,
+              "auto_renewal_present": false,
+              "explicit_no_auto_renewal": true,
+              "affirmative_action_required": true,
+              "renewal_period_months": 12,
+              "opt_out_notice_days": 0
+            }
+          }
+        ]
+      },
+      "candidate_verification": [
+        {
+          "candidate": {
+            "clause_id": "A05",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Either party may terminate this Agreement for convenience by giving the other party at least forty-five (45) days’ prior written notice."
+            ],
+            "rule_id": "R01",
+            "facts": {
+              "notice_days": 45,
+              "termination_type": "CONVENIENCE",
+              "party_scope": "BOTH"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "A04",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Customer shall pay each valid and undisputed invoice within forty-five (45) calendar days after receipt of the invoice."
+            ],
+            "rule_id": "R02",
+            "facts": {
+              "payment_days": 45,
+              "trigger_event": "INVOICE_RECEIPT",
+              "invoice_scope": "VALID_SUPPLIER_INVOICE"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "A07",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Except for liabilities that cannot lawfully be limited, each party’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 100,000."
+            ],
+            "rule_id": "R03",
+            "facts": {
+              "fact_type": "LIABILITY_CAP",
+              "cap_kind": null,
+              "cap_amount": 100000.0,
+              "currency": "TRY",
+              "fee_multiple": 1.0,
+              "fee_period_months": 12,
+              "liability_scope": "BOTH_PARTIES"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "A09",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+            ],
+            "rule_id": "R04",
+            "facts": {
+              "governing_law": "Republic of Türkiye",
+              "governed_scope": "MAIN_AGREEMENT",
+              "scope_kind": "MAIN_AGREEMENT"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "A08",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Each party shall keep confidential all Confidential Information received from the other party and shall use such information solely for performing its obligations under this Agreement."
+            ],
+            "rule_id": "R05",
+            "facts": {
+              "obligation_present": true,
+              "customer_obligated": true,
+              "supplier_obligated": true,
+              "explicit_customer_exclusion": false,
+              "explicit_supplier_exclusion": false,
+              "information_category": "CONFIDENTIAL_INFORMATION",
+              "is_general_confidentiality_obligation": true
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "A10",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "This Agreement will not renew automatically. Any renewal or extension requires the express written agreement of both parties before expiration of the then-current term."
+            ],
+            "rule_id": "R06",
+            "facts": {
+              "renewal_mechanism": null,
+              "auto_renewal_present": false,
+              "explicit_no_auto_renewal": true,
+              "affirmative_action_required": true,
+              "renewal_period_months": 12,
+              "opt_out_notice_days": 0
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        }
+      ],
+      "evaluations": [
+        {
+          "rule_id": "R01",
+          "status": "COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "Either party may terminate this Agreement for convenience by giving the other party at least forty-five (45) days’ prior written notice."
+          ],
+          "reason": "All verified applicable termination-for-convenience clauses provide at least 30 days of prior notice.",
+          "reason_code": "POLICY_SATISFIED",
+          "evaluated_clause_ids": [
+            "A05"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R02",
+          "status": "COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "Customer shall pay each valid and undisputed invoice within forty-five (45) calendar days after receipt of the invoice."
+          ],
+          "reason": "All verified applicable payment clauses require payment within 60 calendar days after receipt of a valid supplier invoice.",
+          "reason_code": "POLICY_SATISFIED",
+          "evaluated_clause_ids": [
+            "A04"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R03",
+          "status": "NOT_FOUND",
+          "requires_human_review": true,
+          "evidence": [
+            "Except for liabilities that cannot lawfully be limited, each party’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 100,000."
+          ],
+          "reason": "No verified concrete aggregate contract fee is available for deterministic liability-cap comparison.",
+          "reason_code": "INSUFFICIENT_EVALUABLE_FACTS",
+          "evaluated_clause_ids": [
+            "A07"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R04",
+          "status": "COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+          ],
+          "reason": "All verified evaluable governing-law candidates specify the Republic of Türkiye.",
+          "reason_code": "POLICY_SATISFIED",
+          "evaluated_clause_ids": [
+            "A09"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R05",
+          "status": "COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "Each party shall keep confidential all Confidential Information received from the other party and shall use such information solely for performing its obligations under this Agreement."
+          ],
+          "reason": "Verified applicable general confidentiality obligations bind both Customer and Supplier.",
+          "reason_code": "POLICY_SATISFIED",
+          "evaluated_clause_ids": [
+            "A08"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R06",
+          "status": "COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "This Agreement will not renew automatically. Any renewal or extension requires the express written agreement of both parties before expiration of the then-current term."
+          ],
+          "reason": "Verified applicable renewal provisions do not provide for automatic renewal and require affirmative action or agreement.",
+          "reason_code": "POLICY_SATISFIED",
+          "evaluated_clause_ids": [
+            "A10"
+          ],
+          "excluded_clause_ids": []
+        }
+      ],
+      "final_findings": {
+        "findings": [
+          {
+            "rule_id": "R01",
+            "status": "COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "Either party may terminate this Agreement for convenience by giving the other party at least forty-five (45) days’ prior written notice."
+            ],
+            "reason": "All verified applicable termination-for-convenience clauses provide at least 30 days of prior notice."
+          },
+          {
+            "rule_id": "R02",
+            "status": "COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "Customer shall pay each valid and undisputed invoice within forty-five (45) calendar days after receipt of the invoice."
+            ],
+            "reason": "All verified applicable payment clauses require payment within 60 calendar days after receipt of a valid supplier invoice."
+          },
+          {
+            "rule_id": "R03",
+            "status": "NOT_FOUND",
+            "requires_human_review": true,
+            "evidence": [
+              "Except for liabilities that cannot lawfully be limited, each party’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 100,000."
+            ],
+            "reason": "No verified concrete aggregate contract fee is available for deterministic liability-cap comparison."
+          },
+          {
+            "rule_id": "R04",
+            "status": "COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+            ],
+            "reason": "All verified evaluable governing-law candidates specify the Republic of Türkiye."
+          },
+          {
+            "rule_id": "R05",
+            "status": "COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "Each party shall keep confidential all Confidential Information received from the other party and shall use such information solely for performing its obligations under this Agreement."
+            ],
+            "reason": "Verified applicable general confidentiality obligations bind both Customer and Supplier."
+          },
+          {
+            "rule_id": "R06",
+            "status": "COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "This Agreement will not renew automatically. Any renewal or extension requires the express written agreement of both parties before expiration of the then-current term."
+            ],
+            "reason": "Verified applicable renewal provisions do not provide for automatic renewal and require affirmative action or agreement."
+          }
+        ]
+      },
+      "rules": [
+        {
+          "rule_id": "R01",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Either party may terminate this Agreement for convenience by giving the other party at least forty-five (45) days’ prior written notice."
+          ],
+          "evidence_valid": true,
+          "reason": "All verified applicable termination-for-convenience clauses provide at least 30 days of prior notice.",
+          "relevant_clause_ids": [
+            "A05"
+          ],
+          "extracted_clause_ids": [
+            "A05"
+          ],
+          "matched_clause_ids": [
+            "A05"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R02",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Customer shall pay each valid and undisputed invoice within forty-five (45) calendar days after receipt of the invoice."
+          ],
+          "evidence_valid": true,
+          "reason": "All verified applicable payment clauses require payment within 60 calendar days after receipt of a valid supplier invoice.",
+          "relevant_clause_ids": [
+            "A04"
+          ],
+          "extracted_clause_ids": [
+            "A04"
+          ],
+          "matched_clause_ids": [
+            "A04"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R03",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "NOT_FOUND",
+          "status_correct": false,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": true,
+          "human_review_correct": false,
+          "evidence": [
+            "Except for liabilities that cannot lawfully be limited, each party’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 100,000."
+          ],
+          "evidence_valid": true,
+          "reason": "No verified concrete aggregate contract fee is available for deterministic liability-cap comparison.",
+          "relevant_clause_ids": [
+            "A03",
+            "A07"
+          ],
+          "extracted_clause_ids": [
+            "A07"
+          ],
+          "matched_clause_ids": [
+            "A07"
+          ],
+          "candidate_recall": 0.5,
+          "end_to_end_correct": false
+        },
+        {
+          "rule_id": "R04",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+          ],
+          "evidence_valid": true,
+          "reason": "All verified evaluable governing-law candidates specify the Republic of Türkiye.",
+          "relevant_clause_ids": [
+            "A09"
+          ],
+          "extracted_clause_ids": [
+            "A09"
+          ],
+          "matched_clause_ids": [
+            "A09"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R05",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Each party shall keep confidential all Confidential Information received from the other party and shall use such information solely for performing its obligations under this Agreement."
+          ],
+          "evidence_valid": true,
+          "reason": "Verified applicable general confidentiality obligations bind both Customer and Supplier.",
+          "relevant_clause_ids": [
+            "A08"
+          ],
+          "extracted_clause_ids": [
+            "A08"
+          ],
+          "matched_clause_ids": [
+            "A08"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R06",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "This Agreement will not renew automatically. Any renewal or extension requires the express written agreement of both parties before expiration of the then-current term."
+          ],
+          "evidence_valid": true,
+          "reason": "Verified applicable renewal provisions do not provide for automatic renewal and require affirmative action or agreement.",
+          "relevant_clause_ids": [
+            "A10"
+          ],
+          "extracted_clause_ids": [
+            "A10"
+          ],
+          "matched_clause_ids": [
+            "A10"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        }
+      ]
+    },
+    {
+      "contract_id": "contract_b",
+      "contract_path": "data/contracts/contract_b.txt",
+      "review_success": true,
+      "error_type": null,
+      "error": null,
+      "latency_ms": 20743.56,
+      "usage": {
+        "prompt_tokens": 1415,
+        "completion_tokens": 773,
+        "total_tokens": 2188
+      },
+      "request_id": "f0edbb7f6f0a457aa285cc337bfdb9bb",
+      "model": "contract-review-qwen3-8b",
+      "finish_reason": "stop",
+      "generation_settings": {
+        "temperature": 0,
+        "seed": 42,
+        "max_tokens": 4096
+      },
+      "extraction": {
+        "candidates": [
+          {
+            "clause_id": "B05",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Either party may terminate this Agreement for convenience upon fifteen (15) days’ prior written notice to the other party."
+            ],
+            "rule_id": "R01",
+            "facts": {
+              "notice_days": 15,
+              "termination_type": "CONVENIENCE",
+              "party_scope": "BOTH"
+            }
+          },
+          {
+            "clause_id": "B04",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Customer shall pay all valid invoices within ninety (90) calendar days after receipt of the relevant invoice."
+            ],
+            "rule_id": "R02",
+            "facts": {
+              "payment_days": 90,
+              "trigger_event": "INVOICE_RECEIPT",
+              "invoice_scope": "VALID_SUPPLIER_INVOICE"
+            }
+          },
+          {
+            "clause_id": "B06",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Supplier’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 200,000."
+            ],
+            "rule_id": "R03",
+            "facts": {
+              "fact_type": "LIABILITY_CAP",
+              "cap_kind": null,
+              "cap_amount": 200000.0,
+              "currency": "TRY",
+              "fee_multiple": 2.0,
+              "fee_period_months": 12,
+              "liability_scope": "SUPPLIER"
+            }
+          },
+          {
+            "clause_id": "B08",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of England and Wales."
+            ],
+            "rule_id": "R04",
+            "facts": {
+              "governing_law": "ENGLAND_AND_WALES",
+              "governed_scope": "MAIN_AGREEMENT",
+              "scope_kind": "MAIN_AGREEMENT"
+            }
+          },
+          {
+            "clause_id": "B07",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Supplier shall keep Customer’s Confidential Information confidential and shall not disclose it except as required for performance of the Services. Customer shall have no corresponding confidentiality obligation with respect to information received from Supplier."
+            ],
+            "rule_id": "R05",
+            "facts": {
+              "obligation_present": true,
+              "customer_obligated": false,
+              "supplier_obligated": true,
+              "explicit_customer_exclusion": true,
+              "explicit_supplier_exclusion": false,
+              "information_category": "CONFIDENTIAL_INFORMATION",
+              "is_general_confidentiality_obligation": false
+            }
+          },
+          {
+            "clause_id": "B09",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "At the end of the initial term, this Agreement shall automatically renew for successive twelve-month periods unless either party gives written notice of non-renewal at least thirty (30) days before the end of the current term."
+            ],
+            "rule_id": "R06",
+            "facts": {
+              "renewal_mechanism": "AUTOMATIC",
+              "auto_renewal_present": true,
+              "explicit_no_auto_renewal": false,
+              "affirmative_action_required": true,
+              "renewal_period_months": 12,
+              "opt_out_notice_days": 30
+            }
+          }
+        ]
+      },
+      "candidate_verification": [
+        {
+          "candidate": {
+            "clause_id": "B05",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Either party may terminate this Agreement for convenience upon fifteen (15) days’ prior written notice to the other party."
+            ],
+            "rule_id": "R01",
+            "facts": {
+              "notice_days": 15,
+              "termination_type": "CONVENIENCE",
+              "party_scope": "BOTH"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "B04",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Customer shall pay all valid invoices within ninety (90) calendar days after receipt of the relevant invoice."
+            ],
+            "rule_id": "R02",
+            "facts": {
+              "payment_days": 90,
+              "trigger_event": "INVOICE_RECEIPT",
+              "invoice_scope": "VALID_SUPPLIER_INVOICE"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "B06",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Supplier’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 200,000."
+            ],
+            "rule_id": "R03",
+            "facts": {
+              "fact_type": "LIABILITY_CAP",
+              "cap_kind": null,
+              "cap_amount": 200000.0,
+              "currency": "TRY",
+              "fee_multiple": 2.0,
+              "fee_period_months": 12,
+              "liability_scope": "SUPPLIER"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "B08",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of England and Wales."
+            ],
+            "rule_id": "R04",
+            "facts": {
+              "governing_law": "ENGLAND_AND_WALES",
+              "governed_scope": "MAIN_AGREEMENT",
+              "scope_kind": "MAIN_AGREEMENT"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "B07",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Supplier shall keep Customer’s Confidential Information confidential and shall not disclose it except as required for performance of the Services. Customer shall have no corresponding confidentiality obligation with respect to information received from Supplier."
+            ],
+            "rule_id": "R05",
+            "facts": {
+              "obligation_present": true,
+              "customer_obligated": false,
+              "supplier_obligated": true,
+              "explicit_customer_exclusion": true,
+              "explicit_supplier_exclusion": false,
+              "information_category": "CONFIDENTIAL_INFORMATION",
+              "is_general_confidentiality_obligation": false
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "B09",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "At the end of the initial term, this Agreement shall automatically renew for successive twelve-month periods unless either party gives written notice of non-renewal at least thirty (30) days before the end of the current term."
+            ],
+            "rule_id": "R06",
+            "facts": {
+              "renewal_mechanism": "AUTOMATIC",
+              "auto_renewal_present": true,
+              "explicit_no_auto_renewal": false,
+              "affirmative_action_required": true,
+              "renewal_period_months": 12,
+              "opt_out_notice_days": 30
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        }
+      ],
+      "evaluations": [
+        {
+          "rule_id": "R01",
+          "status": "NON_COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "Either party may terminate this Agreement for convenience upon fifteen (15) days’ prior written notice to the other party."
+          ],
+          "reason": "At least one applicable termination-for-convenience clause provides fewer than 30 days of prior notice.",
+          "reason_code": "POLICY_VIOLATION",
+          "evaluated_clause_ids": [
+            "B05"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R02",
+          "status": "NON_COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "Customer shall pay all valid invoices within ninety (90) calendar days after receipt of the relevant invoice."
+          ],
+          "reason": "At least one applicable payment clause allows more than 60 calendar days after receipt of a valid supplier invoice.",
+          "reason_code": "POLICY_VIOLATION",
+          "evaluated_clause_ids": [
+            "B04"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R03",
+          "status": "NOT_FOUND",
+          "requires_human_review": true,
+          "evidence": [
+            "Supplier’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 200,000."
+          ],
+          "reason": "No verified concrete aggregate contract fee is available for deterministic liability-cap comparison.",
+          "reason_code": "INSUFFICIENT_EVALUABLE_FACTS",
+          "evaluated_clause_ids": [
+            "B06"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R04",
+          "status": "NON_COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "This Agreement shall be governed by and construed in accordance with the laws of England and Wales."
+          ],
+          "reason": "At least one verified governing-law candidate for the agreement or an incorporated scope specifies law other than the Republic of Türkiye.",
+          "reason_code": "POLICY_VIOLATION",
+          "evaluated_clause_ids": [
+            "B08"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R05",
+          "status": "NOT_FOUND",
+          "requires_human_review": false,
+          "evidence": [],
+          "reason": "No applicable general confidentiality candidate was found.",
+          "reason_code": "NO_RELEVANT_CANDIDATE",
+          "evaluated_clause_ids": [],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R06",
+          "status": "NON_COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "At the end of the initial term, this Agreement shall automatically renew for successive twelve-month periods unless either party gives written notice of non-renewal at least thirty (30) days before the end of the current term."
+          ],
+          "reason": "At least one applicable renewal clause provides for automatic renewal.",
+          "reason_code": "POLICY_VIOLATION",
+          "evaluated_clause_ids": [
+            "B09"
+          ],
+          "excluded_clause_ids": []
+        }
+      ],
+      "final_findings": {
+        "findings": [
+          {
+            "rule_id": "R01",
+            "status": "NON_COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "Either party may terminate this Agreement for convenience upon fifteen (15) days’ prior written notice to the other party."
+            ],
+            "reason": "At least one applicable termination-for-convenience clause provides fewer than 30 days of prior notice."
+          },
+          {
+            "rule_id": "R02",
+            "status": "NON_COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "Customer shall pay all valid invoices within ninety (90) calendar days after receipt of the relevant invoice."
+            ],
+            "reason": "At least one applicable payment clause allows more than 60 calendar days after receipt of a valid supplier invoice."
+          },
+          {
+            "rule_id": "R03",
+            "status": "NOT_FOUND",
+            "requires_human_review": true,
+            "evidence": [
+              "Supplier’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 200,000."
+            ],
+            "reason": "No verified concrete aggregate contract fee is available for deterministic liability-cap comparison."
+          },
+          {
+            "rule_id": "R04",
+            "status": "NON_COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of England and Wales."
+            ],
+            "reason": "At least one verified governing-law candidate for the agreement or an incorporated scope specifies law other than the Republic of Türkiye."
+          },
+          {
+            "rule_id": "R05",
+            "status": "NOT_FOUND",
+            "requires_human_review": false,
+            "evidence": [],
+            "reason": "No applicable general confidentiality candidate was found."
+          },
+          {
+            "rule_id": "R06",
+            "status": "NON_COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "At the end of the initial term, this Agreement shall automatically renew for successive twelve-month periods unless either party gives written notice of non-renewal at least thirty (30) days before the end of the current term."
+            ],
+            "reason": "At least one applicable renewal clause provides for automatic renewal."
+          }
+        ]
+      },
+      "rules": [
+        {
+          "rule_id": "R01",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Either party may terminate this Agreement for convenience upon fifteen (15) days’ prior written notice to the other party."
+          ],
+          "evidence_valid": true,
+          "reason": "At least one applicable termination-for-convenience clause provides fewer than 30 days of prior notice.",
+          "relevant_clause_ids": [
+            "B05"
+          ],
+          "extracted_clause_ids": [
+            "B05"
+          ],
+          "matched_clause_ids": [
+            "B05"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R02",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Customer shall pay all valid invoices within ninety (90) calendar days after receipt of the relevant invoice."
+          ],
+          "evidence_valid": true,
+          "reason": "At least one applicable payment clause allows more than 60 calendar days after receipt of a valid supplier invoice.",
+          "relevant_clause_ids": [
+            "B04"
+          ],
+          "extracted_clause_ids": [
+            "B04"
+          ],
+          "matched_clause_ids": [
+            "B04"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R03",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NOT_FOUND",
+          "status_correct": false,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": true,
+          "human_review_correct": false,
+          "evidence": [
+            "Supplier’s aggregate liability arising out of or relating to this Agreement shall not exceed TRY 200,000."
+          ],
+          "evidence_valid": true,
+          "reason": "No verified concrete aggregate contract fee is available for deterministic liability-cap comparison.",
+          "relevant_clause_ids": [
+            "B03",
+            "B06"
+          ],
+          "extracted_clause_ids": [
+            "B06"
+          ],
+          "matched_clause_ids": [
+            "B06"
+          ],
+          "candidate_recall": 0.5,
+          "end_to_end_correct": false
+        },
+        {
+          "rule_id": "R04",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "This Agreement shall be governed by and construed in accordance with the laws of England and Wales."
+          ],
+          "evidence_valid": true,
+          "reason": "At least one verified governing-law candidate for the agreement or an incorporated scope specifies law other than the Republic of Türkiye.",
+          "relevant_clause_ids": [
+            "B08"
+          ],
+          "extracted_clause_ids": [
+            "B08"
+          ],
+          "matched_clause_ids": [
+            "B08"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R05",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NOT_FOUND",
+          "status_correct": false,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [],
+          "evidence_valid": true,
+          "reason": "No applicable general confidentiality candidate was found.",
+          "relevant_clause_ids": [
+            "B07"
+          ],
+          "extracted_clause_ids": [
+            "B07"
+          ],
+          "matched_clause_ids": [
+            "B07"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": false
+        },
+        {
+          "rule_id": "R06",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "At the end of the initial term, this Agreement shall automatically renew for successive twelve-month periods unless either party gives written notice of non-renewal at least thirty (30) days before the end of the current term."
+          ],
+          "evidence_valid": true,
+          "reason": "At least one applicable renewal clause provides for automatic renewal.",
+          "relevant_clause_ids": [
+            "B09"
+          ],
+          "extracted_clause_ids": [
+            "B09"
+          ],
+          "matched_clause_ids": [
+            "B09"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        }
+      ]
+    },
+    {
+      "contract_id": "contract_c",
+      "contract_path": "data/contracts/contract_c.txt",
+      "review_success": true,
+      "error_type": null,
+      "error": null,
+      "latency_ms": 31128.45,
+      "usage": {
+        "prompt_tokens": 1644,
+        "completion_tokens": 1145,
+        "total_tokens": 2789
+      },
+      "request_id": "d03170f5412e4978b3be95d6818544d0",
+      "model": "contract-review-qwen3-8b",
+      "finish_reason": "stop",
+      "generation_settings": {
+        "temperature": 0,
+        "seed": 42,
+        "max_tokens": 4096
+      },
+      "extraction": {
+        "candidates": [
+          {
+            "clause_id": "C05",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Either party may terminate this Agreement for convenience upon forty-five (45) days’ prior written notice."
+            ],
+            "rule_id": "R01",
+            "facts": {
+              "notice_days": 45,
+              "termination_type": "CONVENIENCE",
+              "party_scope": "BOTH"
+            }
+          },
+          {
+            "clause_id": "C04",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Customer shall pay valid and undisputed Supplier invoices within forty-five (45) calendar days after receipt."
+            ],
+            "rule_id": "R02",
+            "facts": {
+              "payment_days": 45,
+              "trigger_event": "INVOICE_RECEIPT",
+              "invoice_scope": "VALID_SUPPLIER_INVOICE"
+            }
+          },
+          {
+            "clause_id": "C07",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "each party’s aggregate liability arising under this Agreement shall not exceed the fees paid or payable during the twelve (12) months preceding the event giving rise to the claim."
+            ],
+            "rule_id": "R03",
+            "facts": {
+              "fact_type": "LIABILITY_CAP",
+              "cap_kind": "FEE_PERIOD",
+              "cap_amount": 12.0,
+              "currency": "UNKNOWN",
+              "fee_multiple": 1.0,
+              "fee_period_months": 12,
+              "liability_scope": "AGREEMENT"
+            }
+          },
+          {
+            "clause_id": "C08",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Supplier’s liability shall not exceed two times the fees attributable to the affected Services."
+            ],
+            "rule_id": "R03",
+            "facts": {
+              "fact_type": "LIABILITY_CAP",
+              "cap_kind": "FEE_MULTIPLE",
+              "cap_amount": 2.0,
+              "currency": "UNKNOWN",
+              "fee_multiple": 2.0,
+              "fee_period_months": 0,
+              "liability_scope": "SECURITY_SCHEDULE"
+            }
+          },
+          {
+            "clause_id": "C09",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+            ],
+            "rule_id": "R04",
+            "facts": {
+              "governing_law": "Republic of Türkiye",
+              "governed_scope": "AGREEMENT",
+              "scope_kind": "MAIN_AGREEMENT"
+            }
+          },
+          {
+            "clause_id": "C10",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Notwithstanding any other provision of the Agreement, the Security Schedule shall be governed by and construed in accordance with the laws of Germany."
+            ],
+            "rule_id": "R04",
+            "facts": {
+              "governing_law": "Germany",
+              "governed_scope": "SECURITY_SCHEDULE",
+              "scope_kind": "SCHEDULE"
+            }
+          },
+          {
+            "clause_id": "C11",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Each party shall protect the other party’s Confidential Information using reasonable care and shall not disclose such Confidential Information except to personnel and subcontractors who need it to perform obligations under this Agreement and who are subject to confidentiality obligations."
+            ],
+            "rule_id": "R05",
+            "facts": {
+              "obligation_present": true,
+              "customer_obligated": true,
+              "supplier_obligated": true,
+              "explicit_customer_exclusion": false,
+              "explicit_supplier_exclusion": false,
+              "information_category": "CONFIDENTIAL_INFORMATION",
+              "is_general_confidentiality_obligation": true
+            }
+          },
+          {
+            "clause_id": "C12",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Benchmark Reports generated under the Services are not Confidential Information and may be disclosed by Customer without restriction."
+            ],
+            "rule_id": "R05",
+            "facts": {
+              "obligation_present": true,
+              "customer_obligated": true,
+              "supplier_obligated": false,
+              "explicit_customer_exclusion": true,
+              "explicit_supplier_exclusion": false,
+              "information_category": "BENCHMARK_REPORTS",
+              "is_general_confidentiality_obligation": false
+            }
+          },
+          {
+            "clause_id": "C13",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Following expiration of the initial term, the parties may continue performance under the same commercial terms while discussions regarding a possible renewal are ongoing."
+            ],
+            "rule_id": "R06",
+            "facts": {
+              "renewal_mechanism": null,
+              "auto_renewal_present": false,
+              "explicit_no_auto_renewal": true,
+              "affirmative_action_required": true,
+              "renewal_period_months": 0,
+              "opt_out_notice_days": 0
+            }
+          }
+        ]
+      },
+      "candidate_verification": [
+        {
+          "candidate": {
+            "clause_id": "C05",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Either party may terminate this Agreement for convenience upon forty-five (45) days’ prior written notice."
+            ],
+            "rule_id": "R01",
+            "facts": {
+              "notice_days": 45,
+              "termination_type": "CONVENIENCE",
+              "party_scope": "BOTH"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "C04",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Customer shall pay valid and undisputed Supplier invoices within forty-five (45) calendar days after receipt."
+            ],
+            "rule_id": "R02",
+            "facts": {
+              "payment_days": 45,
+              "trigger_event": "INVOICE_RECEIPT",
+              "invoice_scope": "VALID_SUPPLIER_INVOICE"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "C07",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "each party’s aggregate liability arising under this Agreement shall not exceed the fees paid or payable during the twelve (12) months preceding the event giving rise to the claim."
+            ],
+            "rule_id": "R03",
+            "facts": {
+              "fact_type": "LIABILITY_CAP",
+              "cap_kind": "FEE_PERIOD",
+              "cap_amount": 12.0,
+              "currency": "UNKNOWN",
+              "fee_multiple": 1.0,
+              "fee_period_months": 12,
+              "liability_scope": "AGREEMENT"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "C08",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Supplier’s liability shall not exceed two times the fees attributable to the affected Services."
+            ],
+            "rule_id": "R03",
+            "facts": {
+              "fact_type": "LIABILITY_CAP",
+              "cap_kind": "FEE_MULTIPLE",
+              "cap_amount": 2.0,
+              "currency": "UNKNOWN",
+              "fee_multiple": 2.0,
+              "fee_period_months": 0,
+              "liability_scope": "SECURITY_SCHEDULE"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "C09",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye."
+            ],
+            "rule_id": "R04",
+            "facts": {
+              "governing_law": "Republic of Türkiye",
+              "governed_scope": "AGREEMENT",
+              "scope_kind": "MAIN_AGREEMENT"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "C10",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Notwithstanding any other provision of the Agreement, the Security Schedule shall be governed by and construed in accordance with the laws of Germany."
+            ],
+            "rule_id": "R04",
+            "facts": {
+              "governing_law": "Germany",
+              "governed_scope": "SECURITY_SCHEDULE",
+              "scope_kind": "SCHEDULE"
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "C11",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Each party shall protect the other party’s Confidential Information using reasonable care and shall not disclose such Confidential Information except to personnel and subcontractors who need it to perform obligations under this Agreement and who are subject to confidentiality obligations."
+            ],
+            "rule_id": "R05",
+            "facts": {
+              "obligation_present": true,
+              "customer_obligated": true,
+              "supplier_obligated": true,
+              "explicit_customer_exclusion": false,
+              "explicit_supplier_exclusion": false,
+              "information_category": "CONFIDENTIAL_INFORMATION",
+              "is_general_confidentiality_obligation": true
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "C12",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Benchmark Reports generated under the Services are not Confidential Information and may be disclosed by Customer without restriction."
+            ],
+            "rule_id": "R05",
+            "facts": {
+              "obligation_present": true,
+              "customer_obligated": true,
+              "supplier_obligated": false,
+              "explicit_customer_exclusion": true,
+              "explicit_supplier_exclusion": false,
+              "information_category": "BENCHMARK_REPORTS",
+              "is_general_confidentiality_obligation": false
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        },
+        {
+          "candidate": {
+            "clause_id": "C13",
+            "applicability": "APPLICABLE",
+            "evidence": [
+              "Following expiration of the initial term, the parties may continue performance under the same commercial terms while discussions regarding a possible renewal are ongoing."
+            ],
+            "rule_id": "R06",
+            "facts": {
+              "renewal_mechanism": null,
+              "auto_renewal_present": false,
+              "explicit_no_auto_renewal": true,
+              "affirmative_action_required": true,
+              "renewal_period_months": 0,
+              "opt_out_notice_days": 0
+            }
+          },
+          "evidence_valid": true,
+          "evidence_reason": "VALID",
+          "invalid_quotes": []
+        }
+      ],
+      "evaluations": [
+        {
+          "rule_id": "R01",
+          "status": "COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "Either party may terminate this Agreement for convenience upon forty-five (45) days’ prior written notice."
+          ],
+          "reason": "All verified applicable termination-for-convenience clauses provide at least 30 days of prior notice.",
+          "reason_code": "POLICY_SATISFIED",
+          "evaluated_clause_ids": [
+            "C05"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R02",
+          "status": "COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "Customer shall pay valid and undisputed Supplier invoices within forty-five (45) calendar days after receipt."
+          ],
+          "reason": "All verified applicable payment clauses require payment within 60 calendar days after receipt of a valid supplier invoice.",
+          "reason_code": "POLICY_SATISFIED",
+          "evaluated_clause_ids": [
+            "C04"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R03",
+          "status": "NOT_FOUND",
+          "requires_human_review": true,
+          "evidence": [
+            "each party’s aggregate liability arising under this Agreement shall not exceed the fees paid or payable during the twelve (12) months preceding the event giving rise to the claim.",
+            "Supplier’s liability shall not exceed two times the fees attributable to the affected Services."
+          ],
+          "reason": "No verified concrete aggregate contract fee is available for deterministic liability-cap comparison.",
+          "reason_code": "INSUFFICIENT_EVALUABLE_FACTS",
+          "evaluated_clause_ids": [
+            "C07",
+            "C08"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R04",
+          "status": "NON_COMPLIANT",
+          "requires_human_review": true,
+          "evidence": [
+            "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye.",
+            "Notwithstanding any other provision of the Agreement, the Security Schedule shall be governed by and construed in accordance with the laws of Germany."
+          ],
+          "reason": "At least one verified governing-law candidate for the agreement or an incorporated scope specifies law other than the Republic of Türkiye.",
+          "reason_code": "POLICY_VIOLATION",
+          "evaluated_clause_ids": [
+            "C09",
+            "C10"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R05",
+          "status": "COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "Each party shall protect the other party’s Confidential Information using reasonable care and shall not disclose such Confidential Information except to personnel and subcontractors who need it to perform obligations under this Agreement and who are subject to confidentiality obligations."
+          ],
+          "reason": "Verified applicable general confidentiality obligations bind both Customer and Supplier.",
+          "reason_code": "POLICY_SATISFIED",
+          "evaluated_clause_ids": [
+            "C11"
+          ],
+          "excluded_clause_ids": []
+        },
+        {
+          "rule_id": "R06",
+          "status": "COMPLIANT",
+          "requires_human_review": false,
+          "evidence": [
+            "Following expiration of the initial term, the parties may continue performance under the same commercial terms while discussions regarding a possible renewal are ongoing."
+          ],
+          "reason": "Verified applicable renewal provisions do not provide for automatic renewal and require affirmative action or agreement.",
+          "reason_code": "POLICY_SATISFIED",
+          "evaluated_clause_ids": [
+            "C13"
+          ],
+          "excluded_clause_ids": []
+        }
+      ],
+      "final_findings": {
+        "findings": [
+          {
+            "rule_id": "R01",
+            "status": "COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "Either party may terminate this Agreement for convenience upon forty-five (45) days’ prior written notice."
+            ],
+            "reason": "All verified applicable termination-for-convenience clauses provide at least 30 days of prior notice."
+          },
+          {
+            "rule_id": "R02",
+            "status": "COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "Customer shall pay valid and undisputed Supplier invoices within forty-five (45) calendar days after receipt."
+            ],
+            "reason": "All verified applicable payment clauses require payment within 60 calendar days after receipt of a valid supplier invoice."
+          },
+          {
+            "rule_id": "R03",
+            "status": "NOT_FOUND",
+            "requires_human_review": true,
+            "evidence": [
+              "each party’s aggregate liability arising under this Agreement shall not exceed the fees paid or payable during the twelve (12) months preceding the event giving rise to the claim.",
+              "Supplier’s liability shall not exceed two times the fees attributable to the affected Services."
+            ],
+            "reason": "No verified concrete aggregate contract fee is available for deterministic liability-cap comparison."
+          },
+          {
+            "rule_id": "R04",
+            "status": "NON_COMPLIANT",
+            "requires_human_review": true,
+            "evidence": [
+              "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye.",
+              "Notwithstanding any other provision of the Agreement, the Security Schedule shall be governed by and construed in accordance with the laws of Germany."
+            ],
+            "reason": "At least one verified governing-law candidate for the agreement or an incorporated scope specifies law other than the Republic of Türkiye."
+          },
+          {
+            "rule_id": "R05",
+            "status": "COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "Each party shall protect the other party’s Confidential Information using reasonable care and shall not disclose such Confidential Information except to personnel and subcontractors who need it to perform obligations under this Agreement and who are subject to confidentiality obligations."
+            ],
+            "reason": "Verified applicable general confidentiality obligations bind both Customer and Supplier."
+          },
+          {
+            "rule_id": "R06",
+            "status": "COMPLIANT",
+            "requires_human_review": false,
+            "evidence": [
+              "Following expiration of the initial term, the parties may continue performance under the same commercial terms while discussions regarding a possible renewal are ongoing."
+            ],
+            "reason": "Verified applicable renewal provisions do not provide for automatic renewal and require affirmative action or agreement."
+          }
+        ]
+      },
+      "rules": [
+        {
+          "rule_id": "R01",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": true,
+          "predicted_requires_human_review": false,
+          "human_review_correct": false,
+          "evidence": [
+            "Either party may terminate this Agreement for convenience upon forty-five (45) days’ prior written notice."
+          ],
+          "evidence_valid": true,
+          "reason": "All verified applicable termination-for-convenience clauses provide at least 30 days of prior notice.",
+          "relevant_clause_ids": [
+            "C05",
+            "C06"
+          ],
+          "extracted_clause_ids": [
+            "C05"
+          ],
+          "matched_clause_ids": [
+            "C05"
+          ],
+          "candidate_recall": 0.5,
+          "end_to_end_correct": false
+        },
+        {
+          "rule_id": "R02",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Customer shall pay valid and undisputed Supplier invoices within forty-five (45) calendar days after receipt."
+          ],
+          "evidence_valid": true,
+          "reason": "All verified applicable payment clauses require payment within 60 calendar days after receipt of a valid supplier invoice.",
+          "relevant_clause_ids": [
+            "C04"
+          ],
+          "extracted_clause_ids": [
+            "C04"
+          ],
+          "matched_clause_ids": [
+            "C04"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R03",
+          "review_success": true,
+          "expected_status": "NOT_FOUND",
+          "predicted_status": "NOT_FOUND",
+          "status_correct": true,
+          "expected_requires_human_review": true,
+          "predicted_requires_human_review": true,
+          "human_review_correct": true,
+          "evidence": [
+            "each party’s aggregate liability arising under this Agreement shall not exceed the fees paid or payable during the twelve (12) months preceding the event giving rise to the claim.",
+            "Supplier’s liability shall not exceed two times the fees attributable to the affected Services."
+          ],
+          "evidence_valid": true,
+          "reason": "No verified concrete aggregate contract fee is available for deterministic liability-cap comparison.",
+          "relevant_clause_ids": [
+            "C03",
+            "C07",
+            "C08"
+          ],
+          "extracted_clause_ids": [
+            "C07",
+            "C08"
+          ],
+          "matched_clause_ids": [
+            "C07",
+            "C08"
+          ],
+          "candidate_recall": 0.6666666666666666,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R04",
+          "review_success": true,
+          "expected_status": "NON_COMPLIANT",
+          "predicted_status": "NON_COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": true,
+          "predicted_requires_human_review": true,
+          "human_review_correct": true,
+          "evidence": [
+            "This Agreement shall be governed by and construed in accordance with the laws of the Republic of Türkiye.",
+            "Notwithstanding any other provision of the Agreement, the Security Schedule shall be governed by and construed in accordance with the laws of Germany."
+          ],
+          "evidence_valid": true,
+          "reason": "At least one verified governing-law candidate for the agreement or an incorporated scope specifies law other than the Republic of Türkiye.",
+          "relevant_clause_ids": [
+            "C09",
+            "C10"
+          ],
+          "extracted_clause_ids": [
+            "C09",
+            "C10"
+          ],
+          "matched_clause_ids": [
+            "C09",
+            "C10"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R05",
+          "review_success": true,
+          "expected_status": "COMPLIANT",
+          "predicted_status": "COMPLIANT",
+          "status_correct": true,
+          "expected_requires_human_review": false,
+          "predicted_requires_human_review": false,
+          "human_review_correct": true,
+          "evidence": [
+            "Each party shall protect the other party’s Confidential Information using reasonable care and shall not disclose such Confidential Information except to personnel and subcontractors who need it to perform obligations under this Agreement and who are subject to confidentiality obligations."
+          ],
+          "evidence_valid": true,
+          "reason": "Verified applicable general confidentiality obligations bind both Customer and Supplier.",
+          "relevant_clause_ids": [
+            "C11",
+            "C12"
+          ],
+          "extracted_clause_ids": [
+            "C11",
+            "C12"
+          ],
+          "matched_clause_ids": [
+            "C11",
+            "C12"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": true
+        },
+        {
+          "rule_id": "R06",
+          "review_success": true,
+          "expected_status": "NOT_FOUND",
+          "predicted_status": "COMPLIANT",
+          "status_correct": false,
+          "expected_requires_human_review": true,
+          "predicted_requires_human_review": false,
+          "human_review_correct": false,
+          "evidence": [
+            "Following expiration of the initial term, the parties may continue performance under the same commercial terms while discussions regarding a possible renewal are ongoing."
+          ],
+          "evidence_valid": true,
+          "reason": "Verified applicable renewal provisions do not provide for automatic renewal and require affirmative action or agreement.",
+          "relevant_clause_ids": [
+            "C13"
+          ],
+          "extracted_clause_ids": [
+            "C13"
+          ],
+          "matched_clause_ids": [
+            "C13"
+          ],
+          "candidate_recall": 1.0,
+          "end_to_end_correct": false
+        }
+      ]
+    }
+  ]
+}
