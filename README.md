@@ -1,3 +1,4 @@
+
 # Contract Review Agent
 
 **Local-first, auditable LLM-assisted supplier contract review.** This prototype evaluates a UTF-8 plain-text contract against six predefined company policies and returns one finding per rule: `COMPLIANT`, `NON_COMPLIANT`, or `NOT_FOUND`, with supporting quotations and a separate `requires_human_review` flag.
@@ -176,16 +177,16 @@ V2 initial: **14/18** correct classifications, **5/7** violations detected, **13
 ### What the metrics actually tell us
 
 - **Classification accuracy (correct policy statuses / 18):** V0 reached **12/18 (66.7%)**, V1 **10/18 (55.6%)**, and V2 initial **14/18 (77.8%)**. V2 produced four more correct statuses than V0 in these recorded runs, but this does **not** isolate the benefit of Python evaluators: the LLM task, extraction schema, and live responses also changed.
-- **Violation recall (detected violations / 7):** V0 detected **4/7 (57.1%)**; V1 and V2 detected **5/7 (71.4%)** each. V2's stronger overall accuracy did **not** improve violation detection beyond V1. Missing a prohibited clause remains consequential even when most other statuses are correct.
-- **Exact evidence validity (verbatim quotations / returned quotations):** V0 **50.0%**, V1 **33.3%**, V2 **100.0%**. This measures whether *generated quotations* appear in the source, not whether verification code caught invalid ones, whether the quoted provision applies, or whether the extracted interpretation is correct. V1's lower rate reflects the independently generated model output; it is not evidence that the checker made grounding worse.
-- **Human-review recall:** V0 **0.0%**, V1 **100.0%**, V2 **50.0%** against the benchmark's review-required cases. V1's escalation was more sensitive in its recorded run; V2 still missed cases requiring human attention. High classification accuracy should not be conflated with safe escalation behavior.
-- **End-to-end correctness:** V0 **4/18 (22.2%)**, V1 **4/18 (22.2%)**, V2 **13/18 (72.2%)** under the benchmark's combined decision/evidence/review checks. This is the clearest observed improvement in the complete workflow, but it remains a small-sample result.
+- **Violation recall (detected violations / 7):** V0 detected **4/7 (57.1%)**; V1 and V2 detected **5/7 (71.4%)** each. V2's stronger overall accuracy did **not** improve violation detection beyond V1. 
+- **Exact evidence validity (verbatim quotations / returned quotations):** V0 **50.0%**, V1 **33.3%**, V2 **100.0%**. This measures whether *generated quotations* appear in the source, not whether verification code caught invalid ones, whether the quoted provision applies, or whether the extracted interpretation is correct. V1's lower rate reflects the independently generated model output.
+- **Human-review recall:** V0 **0.0%**, V1 **100.0%**, V2 **50.0%** against the benchmark's review-required cases. V1's escalation was more sensitive in its recorded run; V2 still missed cases requiring human attention.
+- **End-to-end correctness:** V0 **4/18 (22.2%)**, V1 **4/18 (22.2%)**, V2 **13/18 (72.2%)** under the benchmark's combined decision/evidence/review checks. This is the clearest observed improvement in the complete workflow.
 - **Candidate recall (V2 only):** **21/25 (84.0%)** expected relevant clause references were extracted. This is an *upstream ceiling*: a policy evaluator cannot assess a clause it never receives, even if its rule logic is perfect.
 - **Successful contract coverage:** V0 **66.7%**, V1 and V2 **100.0%** in the recorded runs. This reports completion of the reviewed contracts, not decision accuracy.
 
-**Controlled comparison vs. separate runs.** A separate **V0/V1 paired replay** (`eval/results/paired_v0_v1.json`) reuses frozen model responses to isolate the effect of the verification layer. In that replay, both versions had **66.7% classification accuracy** and **50.0% exact evidence validity**; the value of V1 is its explicit invalid-evidence detection/escalation rather than a demonstrated improvement in the raw quotations. The table above instead contains **independent live runs**. V2 is **not paired** against V0/V1 because it asks the model to extract candidates rather than issue final classifications.
+**Controlled comparison vs. separate runs.** A separate **V0/V1 paired replay** (`eval/results/paired_v0_v1.json`) reuses frozen model responses to isolate the effect of the verification layer. In that replay, both versions had **66.7% classification accuracy** and **50.0% exact evidence validity**; the value of V1 is its explicit invalid-evidence detection/escalation rather than a demonstrated improvement in the raw quotations.
 
-**What these numbers do not establish.** The benchmark has only **three synthetic contracts, 18 policy outcomes and seven violations**; one changed outcome materially shifts a percentage. No confidence intervals, real-world legal accuracy, cross-model reproducibility, latency benchmark or inference-cost comparison are claimed. The table is the **frozen V2 initial baseline**, before a targeted R05 evaluator correction; the full 18-outcome run has **not** been repeated after that change. Accordingly, the recorded V2 metrics are **not** a fresh measurement of the latest evaluator code.
+**What these numbers do not establish.** The benchmark has only **three synthetic contracts, 18 policy outcomes and seven violations**; one changed outcome materially shifts a percentage. No confidence intervals, real-world legal accuracy, cross-model reproducibility, latency benchmark or inference-cost comparison are claimed. 
 
 ## Failure analysis: current architectural limits
 
@@ -202,26 +203,18 @@ The **five incorrect V2 initial outcomes** are informative because they occur at
 
 ## Why V3 was not implemented — and what comes next
 
-**Deliberate stopping point:** The case-study goal was a small, measurable contract-review pipeline, not a production legal platform. V0 established a baseline; V1 tested deterministic grounding checks; V2 tested separating semantic extraction from rule evaluation. Adding retrieval, more agents or a product UI before characterizing those failures would introduce more variables, infrastructure and debugging work without evidence of better outcomes. The limited synthetic benchmark also cannot justify production-readiness claims. **V3 was not built or evaluated.**
+**Deliberate stopping point:** The case-study goal was a small, measurable contract-review pipeline, not a production legal platform. V0 established a baseline; V1 tested deterministic grounding checks; V2 tested separating semantic extraction from rule evaluation. Adding more agents or a product UI before characterizing those failures would introduce more variables, infrastructure and debugging work without evidence of better outcomes. The limited synthetic benchmark also cannot justify production-readiness claims. **V3 was not built or evaluated.**
 
 With more time, the next changes would follow the observed failure modes, in priority order:
 
-1. **Extraction completeness and semantic fact verification (first):** Define mandatory facts per policy (for example, fee totals before liability comparison); flag missing or inconsistent fields for human review. Check that a quoted clause actually entails the extracted fact, not merely that the quote exists. Target **A/R03, B/R03, C/R01 and C/R06**. Evaluate candidate recall, fact-level precision/recall and downstream violations—not just quote validity.
+1. **Extraction completeness and semantic fact verification (first):** Define mandatory facts per policy (for example, fee totals before liability comparison); flag missing or inconsistent fields for human review. Check that a quoted clause actually entails the extracted fact, not merely that the quote exists. 
 2. **Applicability, exceptions and precedence:** Model general vs. narrow exclusions, incorporated schedules and contradictory terms; add focused regression cases before changing evaluator logic. Target **B/R05** and similar clause-filtering errors.
-3. **Clause-aware retrieval for long agreements:** Only when document size warrants it, segment by sections and preserve clause IDs, schedule links and cross-references. Compare against whole-document extraction on the same long-contract set, including *retrieval recall*, rather than assuming RAG improves accuracy.
-4. **Stronger safety and evaluation:** Expand to more diverse synthetic and permissioned real-world drafting patterns, numeric edge cases and prompt-injection attempts; evaluate false-compliance rate, human-review precision/recall and regression stability across repeated runs. Keep approval human-controlled.
-5. **Enterprise readiness and reviewer feedback:** Add authenticated access, RBAC, log redaction/retention, encryption and offline deployment checks. Record reviewer corrections as new frozen regression cases, not as automatic contract approvals.
-
-These are **proposed extensions**, not existing capabilities or measured V3 results. The next milestone should be an improved evaluation set and evidence that the highest-priority fixes reduce the observed errors before expanding the architecture.
+3. **Clause-aware retrieval for long agreements:** Only when document size warrants it, segment by sections and preserve clause IDs, schedule links and cross-references. Compare against whole-document extraction on the same long-contract set.
+4. **Stronger safety and evaluation:** Expand to more diverse synthetic and permissioned real-world drafting patterns, numeric edge cases and prompt-injection attempts; evaluate false-compliance rate, human-review precision/recall and regression stability across repeated runs.
+5. **Enterprise readiness and reviewer feedback:** Add authenticated access, RBAC, log redaction/retention, encryption and offline deployment checks.
 
 ## Security, privacy, and auditability
 
 Contract text is **untrusted input**, not instructions for the agent. Schema validation, exact quotation checks, deterministic evaluation, and human oversight provide safeguards but do **not** fully prevent prompt injection or incorrect legal interpretations.
 
 Audit events are appended to `logs/reviews.jsonl` and can include prompts, raw model outputs, token usage, findings, failures, and correlation metadata. **The log may contain sensitive contract text.** Logs and `.env` are excluded from version control. In production, enforce access control, encryption, restricted network exposure, retention/deletion policies, and appropriate handling of personal data.
-
-**Privacy note:** Running an LLM locally means inference requests can stay inside your controlled environment; it is not a formal security or regulatory compliance certification. Review data-processing requirements before using real agreements.
-
-## Further reading
-
-For rationale behind V0 → V1 → V2, the local-inference choice, failure analysis, and future work, see the Engineering Decision Document if included in this repository: `docs/engineering-decisions.md`.
